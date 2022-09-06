@@ -1,4 +1,4 @@
-const userRepos = require("../http/controllers")
+const userRepos = require("../api/controllers")
 
 //counts the number of files in a given repo tree
 const getNumOfFiles = async (j) => {
@@ -13,7 +13,7 @@ const getNumOfFiles = async (j) => {
 const countActiveWebhook = async (j) => {
     if (j.length == 0) return 0
     let active_webhooks = 0
-    for (let element in j){
+    for (let element in j) {
         if (element.active == true) active_webhooks++;
     }
     return active_webhooks;
@@ -21,7 +21,7 @@ const countActiveWebhook = async (j) => {
 
 
 const getFirstYmlPath = async (j) => {
-    for(let element of j) {
+    for (let element of j) {
         if (element.path.includes('.yml')) return (element.path).replace('New folder/', '');
     }
     return "";
@@ -48,7 +48,16 @@ const getYamlContent = async (j) => {
 }
 
 
-module.exports = {getRepoName, getRepoOwner, getRepoSize, getFirstYmlPath, getRepoIsPrivate, countActiveWebhook, getYamlContent, getNumOfFiles}
+module.exports = {
+    getRepoName,
+    getRepoOwner,
+    getRepoSize,
+    getFirstYmlPath,
+    getRepoIsPrivate,
+    countActiveWebhook,
+    getYamlContent,
+    getNumOfFiles
+}
 
 
 
